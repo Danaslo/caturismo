@@ -9,6 +9,6 @@
     <button *ngIf="!isAuthenticated" mat-button (click)="goToLogin()">Login</button>
     <button *ngIf="!isAuthenticated" mat-button (click)="goToRegister()">Registrarse</button>
     <button *ngIf="isAuthenticated" mat-button (click)="logout()">Logout</button>
-    <button *ngIf="role === 'administrador'" mat-button (click)="addNewSite()">Añadir Sitio</button>
+    <button *ngIf="role === 'administrador'" mat-button (click)="addNewSite()">Admin</button>
   </div>
 </mat-toolbar>

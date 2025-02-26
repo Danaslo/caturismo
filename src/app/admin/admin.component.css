@@ -8,15 +8,13 @@ mat-card {
   margin-bottom: 100px;
 }
 
-button{
+button {
   width: 60%;
-
 }
 
-mat-card-title{
+mat-card-title {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-
 
 mat-card-header {
   text-align: center;
@@ -64,16 +62,53 @@ button {
   transition: background 0.3s ease;
 }
 
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+button:hover:not(.edit-btn,.delete-btn) {
+  background-color: #0e3f6c;
 }
 
-button:hover:not(:disabled) {
-  background-color: #125a9c;
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-/* **Diseño responsive** */
+.edit-btn {
+  color: white;
+  background-color: #28a745;
+  width: 12%;
+  margin-right: 10px;
+}
+
+.edit-btn:hover {
+  background-color: #0c5e1e;
+}
+
+.delete-btn {
+  color: rgb(255, 255, 255);
+  background-color: #dc3545;
+  width: 15%;
+}
+
+.delete-btn:hover {
+  background-color: #632329;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.cards {
+  width: 90%;
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
 @media (max-width: 768px) {
   mat-card {
     width: 90%;
@@ -88,5 +123,13 @@ button:hover:not(:disabled) {
   button {
     font-size: 0.9rem;
     padding: 10px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
   }
 }

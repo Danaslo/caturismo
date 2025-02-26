@@ -5,72 +5,44 @@
   </mat-card-header>
   <mat-card-content>
     <p>Bienvenido, Administrador. Aquí puedes gestionar las localizaciones.</p>
-    <form (ngSubmit)="addNewSite()">
-      <div>
-        <label for="name">Nombre</label>
-        <input
-          id="name"
-          type="text"
-          [(ngModel)]="newSite.name"
-          name="name"
-          required
-          placeholder="Nombre del sitio"
-        />
-      </div>
-      <div>
-        <label for="description">Descripción</label>
-        <input
-          id="description"
-          type="text"
-          [(ngModel)]="newSite.description"
-          name="description"
-          required
-          placeholder="Descripción del sitio"
-        />
-      </div>
-      <div>
-        <label for="location">Ubicación</label>
-        <input
-          id="location"
-          type="text"
-          [(ngModel)]="newSite.location"
-          name="location"
-          required
-          placeholder="Ubicación del sitio"
-        />
-      </div>
-      <div>
-        <label for="parrafo1">Párrafo 1</label>
-        <textarea
-          id="parrafo1"
-          [(ngModel)]="newSite.parrafo1"
-          name="parrafo1"
-          required
-          placeholder="Párrafo introductorio"
-        ></textarea>
-      </div>
-      <div>
-        <label for="parrafo2">Párrafo 2</label>
-        <textarea
-          id="parrafo2"
-          [(ngModel)]="newSite.parrafo2"
-          name="parrafo2"
-          required
-          placeholder="Detalles adicionales"
-        ></textarea>
-      </div>
-      <div>
-        <label for="imageUrl">URL de la imagen</label>
-        <input
-          id="imageUrl"
-          type="text"
-          [(ngModel)]="newSite.imageUrl"
-          name="imageUrl"
-          required
-          placeholder="URL de la imagen"
-        />
-      </div>
-      <button type="submit" [disabled]="!newSite.name || !newSite.description || !newSite.location || !newSite.imageUrl">Añadir Sitio</button>
+
+    <form (ngSubmit)="editMode ? updateSite() : addNewSite()">
+      <label for="name">Nombre</label>
+      <input id="name" type="text" [(ngModel)]="newSite.name" name="name" required />
+
+      <label for="description">Descripción</label>
+      <input id="description" type="text" [(ngModel)]="newSite.description" name="description" required />
+
+      <label for="location">Ubicación</label>
+      <input id="location" type="text" [(ngModel)]="newSite.location" name="location" required />
+
+      <label for="parrafo1">Párrafo 1</label>
+      <textarea id="parrafo1" [(ngModel)]="newSite.parrafo1" name="parrafo1" required></textarea>
+
+      <label for="parrafo2">Párrafo 2</label>
+      <textarea id="parrafo2" [(ngModel)]="newSite.parrafo2" name="parrafo2" required></textarea>
+
+      <label for="imageUrl">URL de la imagen</label>
+      <input id="imageUrl" type="text" [(ngModel)]="newSite.imageUrl" name="imageUrl" required />
+
+      <button type="submit">{{ editMode ? 'Actualizar Sitio' : 'Añadir Sitio' }}</button>
+      <button *ngIf="editMode" type="button" (click)="resetForm()">Cancelar</button>
     </form>
+
+    <hr />
+    <div id="content">
+    <mat-card *ngFor="let sitio of sitios" class="cards">
+      <mat-card-header>
+        <mat-card-title>{{ sitio.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ sitio.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="edit-btn"  mat-button color="primary" (click)="editSite(sitio)">Editar</button>
+        <button class="delete-btn"  mat-button color="warn" (click)="deleteSite(sitio.id)">Eliminar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
   </mat-card-content>
 </mat-card>
